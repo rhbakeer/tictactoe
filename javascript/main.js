@@ -18,10 +18,28 @@ tiles.forEach((tile) => {
 })
 
 function onTileClick(i){
+    
+    if(game.board[i]){
+        return;
+    }
+
     game.makeMove(i);
     game.nextTurn();
     gameView.updateBoard(game);
-}
+
+    var boardFull = true;
+
+    for(var j=0; j<9; j++)
+        {
+            if(game.board[j] == null){
+                boardFull = false;
+            }
+        }
+
+        if(boardFull){
+            alert("DRAW! Play Again");
+        }
+    }
 
 function gameStart(){
     game = new Game();
